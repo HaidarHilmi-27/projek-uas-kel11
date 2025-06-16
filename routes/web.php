@@ -1,14 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\indexController;
 use App\Http\Controllers\DashboardController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/index', function () {
-    return view('index');
-});
+// Arahkan root "/" ke controller DashboardController@index
+Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
 
+// Arahkan "/index" juga ke controller yang sama (jika masih ingin mendukung /index)
 Route::get('/index', [DashboardController::class, 'index']);
