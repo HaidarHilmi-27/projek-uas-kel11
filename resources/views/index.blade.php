@@ -35,7 +35,7 @@
         <a href="#about" class="text-gray-700 hover:text-blue-500">Tentang</a>
         <a href="#info" class="text-gray-700 hover:text-blue-500">Informasi</a>
         <a href="#features" class="text-gray-700 hover:text-blue-500">Parkiran</a>
-        <a href="{{ url('/login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
+        <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
       </div>
 
       <!-- Form Pencarian -->
@@ -53,7 +53,7 @@
     <div class="max-w-7xl mx-auto text-center">
         <h1 class="text-4xl md:text-5xl font-bold mb-4">Selamat Datang di Sistem Informasi Parkir Kampus STT Nurul Fikri</h1>
         <p class="text-lg md:text-xl mb-8">Sistem pintar untuk manajemen parkir kampus yang efisien dan aman</p>
-        <a href="{{ url('/login') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Login Sekarang</a>
+        <a href="{{ url('/admin/login') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Login Sekarang</a>
     </div>
 </section>
 
