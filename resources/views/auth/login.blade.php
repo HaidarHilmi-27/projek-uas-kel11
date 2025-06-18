@@ -5,20 +5,32 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (trim($email) == '' || trim($password) == '') {
-        $error = "Input form harus diisi.";
+    // Validasi input
+    if (empty($email) || empty($password)) {
+        $error = "Email dan password harus diisi.";
     } else {
-        if ($email == 'Admin Parkir' && $password == 'admin123') {
-            $_SESSION['username'] = 'Admin Parkir';
-            $_SESSION['role'] = 'admin';
-            header('Location: ../admin.php');
+        // Koneksi ke database
+        $db = new PDO('mysql:host=localhost;dbname=nama_database', 'username', 'password');
+        
+        // Cari user di database
+        $stmt = $db->prepare("SELECT * FROM users WHERE email = ?");
+        $stmt->execute([$email]);
+        $user = $stmt->fetch();
+        
+        // Verifikasi password
+        if ($user && password_verify($password, $user['password'])) {
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['email'] = $user['email'];
+            $_SESSION['role'] = $user['role']; // Pastikan ada kolom role di tabel users
+            
+            // Redirect ke dashboard Filament
+            header('Location: /admin');
             exit;
         } else {
             $error = 'Email atau password salah.';
         }
     }
 }
-
 ?>
 
 <!DOCTYPE html>
@@ -56,39 +68,38 @@ if ($_SERVER["REQUEST_METHOD"] == 'POST') {
         <?php endif; ?>
 
 
-      <form action="" method="POST">
-        <div class="input-group mb-3">
-          <input type="text" class="form-control" name="email" placeholder="Username">
-          <div class="input-group-append">
+      <form action="/admin/login" method="POST">
+    @csrf
+    <div class="input-group mb-3">
+        <input type="email" class="form-control" name="email" placeholder="Email" required>
+        <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-envelope"></span>
+                <span class="fas fa-envelope"></span>
             </div>
-          </div>
         </div>
-        <div class="input-group mb-3">
-          <input type="password" class="form-control" name="password" placeholder="Password">
-          <div class="input-group-append">
+    </div>
+    <div class="input-group mb-3">
+        <input type="password" class="form-control" name="password" placeholder="Password" required>
+        <div class="input-group-append">
             <div class="input-group-text">
-              <span class="fas fa-lock"></span>
+                <span class="fas fa-lock"></span>
             </div>
-          </div>
         </div>
-        <div class="row">
-          <div class="col-8">
+    </div>
+    <div class="row">
+        <div class="col-8">
             <div class="icheck-primary">
-              <input type="checkbox" id="remember">
-              <label for="remember">
-                Ingat Saya
-              </label>
+                <input type="checkbox" id="remember" name="remember">
+                <label for="remember">
+                    Ingat Saya
+                </label>
             </div>
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" name="submit" class="btn btn-primary btn-block">Sign In</button>
-          </div>
-          <!-- /.col -->
         </div>
-      </form>
+        <div class="col-4">
+            <button type="submit" class="btn btn-primary btn-block">Sign In</button>
+        </div>
+    </div>
+</form>
 
       <p class="mb-1">
         <a href="forgot-password.html">I forgot my password</a>
