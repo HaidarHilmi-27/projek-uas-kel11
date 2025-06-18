@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Dashboard Parkiran</title>
+    <title>Parkiran Kampus</title>
     <style>
         .box {
             padding: 10px;
