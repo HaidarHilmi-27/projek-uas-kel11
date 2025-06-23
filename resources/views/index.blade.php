@@ -29,13 +29,14 @@
 
     <!-- Menu Navigasi -->
     <div id="menu" class="hidden md:flex md:items-center md:space-x-6 absolute md:static top-16 left-0 w-full md:w-auto bg-white md:bg-transparent shadow-md md:shadow-none px-4 py-4 md:p-0 transition-all duration-300 flex-col md:flex-row space-y-4 md:space-y-0 z-40">
-      
+
       <!-- Link Navigasi -->
       <div class="flex flex-col md:flex-row md:items-center md:space-x-4 w-full md:w-auto">
         <a href="#about" class="text-gray-700 hover:text-blue-500">Tentang</a>
         <a href="#info" class="text-gray-700 hover:text-blue-500">Informasi</a>
         <a href="#features" class="text-gray-700 hover:text-blue-500">Parkiran</a>
-        <a href="{{ url('/admin/login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
+        <a href="{{ route('login') }}" class="text-gray-700 hover:text-blue-500">Login</a>
+        <a href="{{ route('register') }}" class="text-gray-700 hover:text-blue-500">Register</a>
       </div>
 
       <!-- Form Pencarian -->
@@ -49,13 +50,17 @@
   </div>
 </nav>
 
-    <section class="bg-blue-500 text-white pt-20 md:pt-24 pb-12 md:pb-20">
-    <div class="max-w-7xl mx-auto text-center">
-        <h1 class="text-4xl md:text-5xl font-bold mb-4">Selamat Datang di Sistem Informasi Parkir Kampus STT Nurul Fikri</h1>
-        <p class="text-lg md:text-xl mb-8">Sistem pintar untuk manajemen parkir kampus yang efisien dan aman</p>
-        <a href="{{ url('/admin/login') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Login Sekarang</a>
+<section class="bg-blue-500 text-white pt-20 md:pt-24 pb-12 md:pb-20">
+  <div class="max-w-7xl mx-auto text-center">
+    <h1 class="text-4xl md:text-5xl font-bold mb-4">Selamat Datang di Sistem Informasi Parkir Kampus STT Nurul Fikri</h1>
+    <p class="text-lg md:text-xl mb-8">Sistem pintar untuk manajemen parkir kampus yang efisien dan aman</p>
+    <div class="flex justify-center space-x-4">
+      <a href="{{ route('login') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Login</a>
+      <a href="{{ route('register') }}" class="bg-white text-blue-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-100 transition">Register</a>
     </div>
+  </div>
 </section>
+
 
 <section id="about" class="bg-white pt-20 md:pt-24 pb-12 md:pb-20">
   <div class="max-w-7xl mx-auto px-4 md:px-8">
