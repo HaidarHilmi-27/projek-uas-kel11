@@ -4,6 +4,16 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Auth;
+
+Route::get('/admin/logout', function () {
+    Auth::logout();
+    request()->session()->invalidate();
+    request()->session()->regenerateToken();
+
+    return redirect('/login'); // atau '/' jika ke halaman utama
+});
+
 
 // Arahkan root "/" ke controller DashboardController@index
 Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
