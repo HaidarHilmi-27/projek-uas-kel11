@@ -33,16 +33,16 @@ class KendaraanResource extends Resource
                     ->maxLength(255),
                 TextInput::make('nopol')
                     ->required()
-                    ->maxLenght(255),
+                    ->maxLength(255),
                 TextInput::make('tahun_beli')
                     ->required()
-                    ->int(),
+                    ->rule('integer'),
                 TextInput::make('deskripsi')
                     ->required()
-                    ->Text(),
+                    ->maxLength(255),
                 TextInput::make('jenis_kendaraan_id')
                     ->required()
-                    ->int()
+                    ->rule('integer')
             ]);
     }
 

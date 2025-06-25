@@ -12,6 +12,8 @@ use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\DatePicker;
+use Filament\Forms\Components\TimePicker;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 
@@ -25,27 +27,26 @@ class TransaksiResource extends Resource
     {
         return $form
             ->schema([
-                TextInput::make('tanggal')
-                    ->required()
-                    ->date(),
-                TextInput::make('mulai')
-                    ->required()
-                    ->time(),
-                TextInput::make('akhir')
-                    ->required()
-                    ->time(),
+                DatePicker::make('tanggal')
+                    ->required(),
+                TimePicker::make('mulai')
+                    ->required(),
+                TimePicker::make('akhir')
+                    ->required(),
                 TextInput::make('keterangan')
                     ->required()
-                    ->text(),
+                    ->maxLength(255),
                 TextInput::make('biaya')
                     ->required()
-                    ->double(),
+                    ->numeric(),
                 TextInput::make('kendaraan_id')
+                    ->label('kendaraan')
                     ->required()
-                    ->int(),
+                    ->rule('integer'),
                 TextInput::make('area_parkir_id')
+                    ->label('area_parkir')
                     ->required()
-                    ->int(),
+                    ->rule('integer'),
             ]);
     }
 

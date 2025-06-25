@@ -254,20 +254,16 @@
 
   function filterAreas() {
     const keyword = searchInput.value.toLowerCase();
-    const status = statusFilter.value;
+    const status = statusFilter.value.toLowerCase();
 
     cards.forEach(card => {
       const namaArea = card.querySelector('h3').textContent.toLowerCase();
-      const notif = card.querySelector('p.font-semibold').textContent.trim();
+      const notif = card.querySelector('p.font-semibold')?.textContent.trim().toLowerCase() || "";
 
       const cocokNama = namaArea.includes(keyword);
-      const cocokStatus = status === "" || notif === status;
+      const cocokStatus = status === "" || notif.includes(status);
 
-      if (cocokNama && cocokStatus) {
-        card.style.display = 'block';
-      } else {
-        card.style.display = 'none';
-      }
+      card.style.display = (cocokNama && cocokStatus) ? 'block' : 'none';
     });
   }
 
@@ -275,6 +271,7 @@
   searchInput.addEventListener('keyup', filterAreas);
   statusFilter.addEventListener('change', filterAreas);
 </script>
+
 
 </body>
 </html>

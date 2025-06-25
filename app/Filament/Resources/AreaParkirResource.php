@@ -30,10 +30,11 @@ class AreaParkirResource extends Resource
                     ->maxLength(255),
                 TextInput::make('kapasitas')
                     ->required()
-                    ->int(),
+                    ->numeric()
+                    ->rule('integer'),
                 TextInput::make('keterangan')
                     ->required()
-                    ->numeric(),
+                    ->maxLength(255),
                 TextInput::make('kampus_id')
                     ->required()
                     ->numeric(),
