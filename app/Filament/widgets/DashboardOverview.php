@@ -23,7 +23,7 @@ class DashboardOverview extends BaseWidget
             Card::make('Total Jenis', Jenis::count()),
             Card::make('Total Kampus', Kampus::count()),
             Card::make('Total Kendaraan', Kendaraan::count()),
-            Card::make('Total Transaksi', Transaksi::count()),
+            Card::make('Transaksi Hari Ini', Transaksi::count()),
         ];
     }
 }
