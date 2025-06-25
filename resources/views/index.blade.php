@@ -230,6 +230,52 @@
     menu.classList.toggle("hidden");
   });
 </script>
+<script>
+  // Fitur pencarian area parkir berdasarkan nama
+  document.getElementById('searchBtn').addEventListener('click', function () {
+    const keyword = document.getElementById('searchArea').value.toLowerCase();
+    const cards = document.querySelectorAll('#areaCards > div');
+
+    cards.forEach(card => {
+      const namaArea = card.querySelector('h3').textContent.toLowerCase();
+      if (namaArea.includes(keyword)) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  });
+</script>
+<script>
+  const searchInput = document.getElementById('searchArea');
+  const searchBtn = document.getElementById('searchBtn');
+  const statusFilter = document.getElementById('statusFilter');
+  const cards = document.querySelectorAll('#areaCards > div');
+
+  function filterAreas() {
+    const keyword = searchInput.value.toLowerCase();
+    const status = statusFilter.value;
+
+    cards.forEach(card => {
+      const namaArea = card.querySelector('h3').textContent.toLowerCase();
+      const notif = card.querySelector('p.font-semibold').textContent.trim();
+
+      const cocokNama = namaArea.includes(keyword);
+      const cocokStatus = status === "" || notif === status;
+
+      if (cocokNama && cocokStatus) {
+        card.style.display = 'block';
+      } else {
+        card.style.display = 'none';
+      }
+    });
+  }
+
+  searchBtn.addEventListener('click', filterAreas);
+  searchInput.addEventListener('keyup', filterAreas);
+  statusFilter.addEventListener('change', filterAreas);
+</script>
+
 </body>
 </html>
 
